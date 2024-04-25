@@ -10,14 +10,23 @@ function updateClock() {
     let second = now.getSeconds();
 
     digitalElement.innerHTML = `${fixZero(hour)}:${fixZero(minute)}:${fixZero(second)}`;
+
+    let sDeg = ((360/60) * second) - 90;
+    //A conta calcula a movimentação em graus dos seg
+    //O -90 serve para compensar um acréscimo de 90º
+    //Isso acontece pq o segundo 0 no CSS é posicionado de forma diferente do relógio analógico, 90 graus antes.  
+    sElement.style.transform = `rotate(${sDeg}deg)`;
+
 }
 
-function fixZero(time) {
+function fixZero(time) { //Resolve o bug 
     if(time < 10) {
         return '0'+time;
     } else {
         return time;
     }
+
+    //return time < 10 ? `0${time}` : time;
 }
 
 setInterval(updateClock, 1000);
