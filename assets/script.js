@@ -35,3 +35,4 @@ function fixZero(time) { //Resolve o bug
 
 setInterval(updateClock, 1000);
 // A cada 1 segundo, executa a função de update.
+updateClock();
